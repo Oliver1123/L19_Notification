@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.util.Pair;
 
 import com.example.oliver.l19_notification.Constants;
-import com.example.oliver.l19_notification.Custom.MyEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,37 +41,37 @@ public class NotificationDBQueryHelper {
         mDataBase.delete(NotificationDBHelper.NOTIFICATION_TABLE_NAME, null, null);
     }
     /**
-     * Insert given NotificationCompat.Builder with id into base
-     * @param _entry NotificationCompat.Builder and his ID that  will be inserted
+     * Insert given pair into base
+     * @param _pair NotificationCompat.Builder and his ID that  will be inserted
      */
-    public void insert(MyEntry<Integer, NotificationCompat.Builder> _entry) {
+    public void insert(Pair<Integer, NotificationCompat.Builder> _pair) {
         mDataBase.beginTransaction();
         try {
             ContentValues cv = new ContentValues();
 
-            cv.put(NotificationDBHelper.NOTIFICATION_ID              , _entry.getKey());
-            cv.put(NotificationDBHelper.NOTIFICATION_CONTENT_TEXT    , _entry.getValue().mContentText.toString());
-            cv.put(NotificationDBHelper.NOTIFICATION_TITLE           , _entry.getValue().mContentTitle.toString());
-            cv.put(NotificationDBHelper.NOTIFICATION_SUBTITLE        , _entry.getValue().mSubText.toString());
-            cv.put(NotificationDBHelper.NOTIFICATION_TICKET_TEXT     , _entry.getValue().mNotification.tickerText.toString());
+            cv.put(NotificationDBHelper.NOTIFICATION_ID             , _pair.first);
+            cv.put(NotificationDBHelper.NOTIFICATION_CONTENT_TEXT   , _pair.second.mContentText.toString());
+            cv.put(NotificationDBHelper.NOTIFICATION_TITLE          , _pair.second.mContentTitle.toString());
+            cv.put(NotificationDBHelper.NOTIFICATION_SUBTITLE       , _pair.second.mSubText.toString());
+            cv.put(NotificationDBHelper.NOTIFICATION_TICKET_TEXT    , _pair.second.mNotification.tickerText.toString());
 
             mDataBase.insert(NotificationDBHelper.NOTIFICATION_TABLE_NAME, null, cv);
 
             mDataBase.setTransactionSuccessful();
         } finally {
             mDataBase.endTransaction();
-            Log.d(Constants.TAG, "inserted " + _entry.toString());
+            Log.d(Constants.TAG, "inserted " + _pair.toString());
         }
     }
 
 
     /**
-     * Get all entry from data base
-     * @return list of MyEntry<Integer, NotificationCompat.Builder>
+     * Get all records from data base
+     * @return list of pair<Integer, NotificationCompat.Builder>
      */
-    public List<MyEntry<Integer, NotificationCompat.Builder>> getItems() {
+    public List<Pair<Integer, NotificationCompat.Builder>> getItems() {
 
-        List<MyEntry<Integer, NotificationCompat.Builder>>  result = new ArrayList<>();
+        List<Pair<Integer, NotificationCompat.Builder>>  result = new ArrayList<>();
 
         Cursor c = mDataBase.query(NotificationDBHelper.NOTIFICATION_TABLE_NAME,
                 null,
@@ -97,9 +97,9 @@ public class NotificationDBQueryHelper {
                         .setSubText(notification_subtitle)
                         .setTicker(notification_ticket_text);
 
-                MyEntry<Integer, NotificationCompat.Builder> entry = new MyEntry<>(notification_ID, builder);
-                result.add(entry);
-                Log.d(Constants.TAG, "get " + entry.toString());
+
+                result.add(new Pair<Integer, NotificationCompat.Builder>(notification_ID, builder));
+                Log.d(Constants.TAG, "get " + notification_ID + " builder: " + builder.toString());
             }
 
             c.close();

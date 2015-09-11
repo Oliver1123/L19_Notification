@@ -35,7 +35,6 @@ public class MyGcmListenerService extends GcmListenerService {
                 .setContentText(message)
                 .setTicker(tickerText)
                 .setAutoCancel(true);
-        Notification notification = builder.build();
 
         Log.d(Constants.TAG, "contentText: " + builder.mContentText);
         Log.d(Constants.TAG, "title: " + builder.mContentTitle);
