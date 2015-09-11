@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">L19_Notification</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Server API Key-->
+    <!--AIzaSyApcpd97mGVCy7ejt4KjIzyiBVT7bi-2ec-->
+    <!--Sender ID-->
+    <!--98994588971-->
+
+</resources>
