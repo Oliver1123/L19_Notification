@@ -3,9 +3,24 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_addNotification">Add</string>
+    <string name="action_sync">Sync</string>
+    <string name="notification_title">Title</string>
+    <string name="notification_subtitle">Sub Title</string>
+    <string name="notification_text">Text</string>
+    <string name="notification_ticket">Ticket Text</string>
+    <string name="sound">Sound</string>
+    <string name="vibration">Vibration</string>
     <!--Server API Key-->
     <!--AIzaSyApcpd97mGVCy7ejt4KjIzyiBVT7bi-2ec-->
     <!--Sender ID-->
     <!--98994588971-->
+
+
+    <!--Server API Key-->
+    <!--AIzaSyA6XwtHvt7sZncsHmt7JBLnnzsdjwzdgjU-->
+    <!--Sender ID-->
+    <!--875584962080-->
+
 
 </resources>

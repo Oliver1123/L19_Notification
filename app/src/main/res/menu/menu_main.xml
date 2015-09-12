@@ -1,6 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_sync"
+          android:title= "@string/action_sync"
+          android:orderInCategory="98"
+          android:icon="@android:drawable/ic_popup_sync"
+          app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_addNotification"
+          android:title= "@string/action_addNotification"
+          android:orderInCategory="99"
+          app:showAsAction="never" />
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
 </menu>

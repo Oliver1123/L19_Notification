@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/item_view_NI"
+    android:padding="@dimen/layout_padding">
 
     <TextView
         android:layout_width="wrap_content"
@@ -10,7 +12,8 @@
         android:id="@+id/tvTitle_NI"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/ibDelete_NI"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +22,8 @@
         android:id="@+id/tvSubTitle_NI"
         android:layout_below="@+id/tvTitle_NI"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/tvTitle_NI"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,7 +32,8 @@
         android:id="@+id/tvText_NI"
         android:layout_below="@+id/tvSubTitle_NI"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/tvTitle_NI"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,12 +42,13 @@
         android:id="@+id/tvTicket_NI"
         android:layout_below="@+id/tvText_NI"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/tvTitle_NI"/>
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ibDelete"
+        android:id="@+id/ibDelete_NI"
         android:layout_alignTop="@+id/tvSubTitle_NI"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

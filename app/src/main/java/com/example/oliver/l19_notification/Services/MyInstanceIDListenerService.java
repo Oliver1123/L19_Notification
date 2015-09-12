@@ -1,4 +1,4 @@
-package com.example.oliver.l19_notification;
+package com.example.oliver.l19_notification.Services;
 
 import com.google.android.gms.iid.InstanceIDListenerService;
 

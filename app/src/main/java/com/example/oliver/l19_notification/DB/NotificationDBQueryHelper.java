@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.util.Pair;
 
 import com.example.oliver.l19_notification.Constants;
+import com.example.oliver.l19_notification.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +62,7 @@ public class NotificationDBQueryHelper {
             mDataBase.setTransactionSuccessful();
         } finally {
             mDataBase.endTransaction();
-            Log.d(Constants.TAG, "inserted " + _pair.toString());
+            Log.d(Constants.TAG, "inserted id: " + _pair.first + ", builder: " + _pair.second.toString());
         }
     }
 
@@ -93,9 +95,12 @@ public class NotificationDBQueryHelper {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
 
                 builder.setContentText(notification_content_text)
+                        .setSmallIcon(android.R.drawable.ic_dialog_info)
                         .setContentTitle(notification_title)
                         .setSubText(notification_subtitle)
-                        .setTicker(notification_ticket_text);
+                        .setTicker(notification_ticket_text)
+                        .setVibrate(new long[]{0, 100, 200, 300})
+                        .setSound(Uri.parse("android.resource://" + Constants.PACKAGE_NAME + "/" + R.raw.notif_sound));
 
 
                 result.add(new Pair<Integer, NotificationCompat.Builder>(notification_ID, builder));

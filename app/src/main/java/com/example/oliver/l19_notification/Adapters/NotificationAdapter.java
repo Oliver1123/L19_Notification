@@ -14,9 +14,7 @@ import com.example.oliver.l19_notification.Constants;
 import com.example.oliver.l19_notification.NotificationActionListener;
 import com.example.oliver.l19_notification.R;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by oliver on 11.09.15.
@@ -40,15 +38,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void setDataItems(List<Pair<Integer, NotificationCompat.Builder>> _items) {
         mData = _items;
     }
-    public void addDataItemToTop(Pair<Integer, NotificationCompat.Builder> _pair) {
-        if (_pair.first != null)
-            mData.add(0, _pair);
-    }
 
-    public void addDataItemToEnd(Pair<Integer, NotificationCompat.Builder> _pair) {
+    public void addDataItem(Pair<Integer, NotificationCompat.Builder> _pair) {
         if (_pair.first != null)
             mData.add(_pair);
     }
+
 
     @Override
     public NotificationViewHolder onCreateViewHolder(ViewGroup _viewGroup, int i) {
@@ -82,7 +77,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             mText       = (TextView) itemView.findViewById(R.id.tvText_NI);
             mTicket     = (TextView) itemView.findViewById(R.id.tvTicket_NI);
 
-            itemView.findViewById(R.id.ibDelete).setOnClickListener(this);
+            itemView.findViewById(R.id.ibDelete_NI).setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         public void onBind(Pair<Integer, NotificationCompat.Builder> _item) {
@@ -96,8 +92,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         @Override
         public void onClick(View v) {
-         Log.d(Constants.TAG, "onClick delete pos: " + getAdapterPosition() + ", id: " + mCurrentItem.first);
-           mListener.deleteNotification(mCurrentItem.first);
+            switch (v.getId()) {
+                case R.id.ibDelete_NI:
+                    Log.d(Constants.TAG, "onClick delete pos: " + getAdapterPosition() + ", id: " + mCurrentItem.first);
+                    mListener.deleteNotification(mCurrentItem.first);
+                    break;
+                case R.id.item_view_NI:
+                    Log.d(Constants.TAG, "onClick sendNotification pos: " + getAdapterPosition() + ", id: " + mCurrentItem.first);
+                    mListener.sendNotification(mCurrentItem);
+            }
         }
     }
 }
