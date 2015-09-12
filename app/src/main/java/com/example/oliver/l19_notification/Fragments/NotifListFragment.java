@@ -1,12 +1,12 @@
 package com.example.oliver.l19_notification.Fragments;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -24,7 +24,6 @@ import android.view.ViewGroup;
 
 import com.example.oliver.l19_notification.Adapters.NotificationAdapter;
 import com.example.oliver.l19_notification.Constants;
-import com.example.oliver.l19_notification.DB.NotificationDBHelper;
 import com.example.oliver.l19_notification.DB.NotificationDBQueryHelper;
 import com.example.oliver.l19_notification.Dialog.NotificationDialog;
 import com.example.oliver.l19_notification.NotificationActionListener;
@@ -67,6 +66,9 @@ public class NotifListFragment extends Fragment implements NotificationActionLis
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_exit:
+                getActivity().finish();
+                return true;
             case R.id.action_addNotification:
                 NotificationDialog dialog = new NotificationDialog();
                 dialog.setTargetFragment(this, NOTIFICATION_DIALOG_REQUEST_CODE);
@@ -85,16 +87,11 @@ public class NotifListFragment extends Fragment implements NotificationActionLis
         mAdapter.notifyDataSetChanged();
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_notif_list, container, false);
-
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.my_toolbar_FNL);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         initUI(rootView);
 
@@ -102,11 +99,12 @@ public class NotifListFragment extends Fragment implements NotificationActionLis
     }
 
     private void initUI(View _rootView) {
-        mRecuclerViewNotification= (RecyclerView) _rootView.findViewById(R.id.rvNotification_FNL);
+        Toolbar toolbar = (Toolbar) _rootView.findViewById(R.id.my_toolbar_FNL);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecuclerViewNotification= (RecyclerView) _rootView.findViewById(R.id.rvNotification_FNL);
         mRecuclerViewNotification.setLayoutManager(mLayoutManager);
-        mRecuclerViewNotification.setItemAnimator(new DefaultItemAnimator());
 
         mAdapter = new NotificationAdapter(getActivity(), this, mHelper.getItems());
         mRecuclerViewNotification.setAdapter(mAdapter);
@@ -131,12 +129,13 @@ public class NotifListFragment extends Fragment implements NotificationActionLis
         String tickerText   = data.getStringExtra(Constants.BUILDER_ARG_TICKER_TEXT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity())
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setContentTitle(title)
                 .setSubText(subtitle)
                 .setContentText(message)
                 .setTicker(tickerText)
                 .setAutoCancel(true)
+
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setVibrate(new long[]{0, 100, 200, 300})
                 .setSound(Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.notif_sound));
 
@@ -148,7 +147,6 @@ public class NotifListFragment extends Fragment implements NotificationActionLis
         addNotification(pair);
     }
 
-    @Override
     public void addNotification(Pair<Integer, NotificationCompat.Builder> _pair) {
         mHelper.insert(_pair);
         mAdapter.addDataItem(_pair);

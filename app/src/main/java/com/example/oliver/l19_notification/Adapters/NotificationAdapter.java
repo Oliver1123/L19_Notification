@@ -84,10 +84,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public void onBind(Pair<Integer, NotificationCompat.Builder> _item) {
             mCurrentItem = _item;
 
-            mTitle.setText(mCurrentItem.second.mContentTitle);
-            mSubTitle.setText(mCurrentItem.second.mSubText);
-            mText.setText(mCurrentItem.second.mContentText);
-            mTicket.setText(mCurrentItem.second.mNotification.tickerText);
+            mTitle.setText("Title: " + mCurrentItem.second.mContentTitle);
+            mSubTitle.setText("SubTitle: " + mCurrentItem.second.mSubText);
+            mText.setText("Message: " + mCurrentItem.second.mContentText);
+            mTicket.setText("Ticket: " +mCurrentItem.second.mNotification.tickerText);
         }
 
         @Override

@@ -11,11 +11,7 @@
     <string name="notification_ticket">Ticket Text</string>
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
-    <!--Server API Key-->
-    <!--AIzaSyApcpd97mGVCy7ejt4KjIzyiBVT7bi-2ec-->
-    <!--Sender ID-->
-    <!--98994588971-->
-
+    <string name="action_exit">Exit</string>
 
     <!--Server API Key-->
     <!--AIzaSyA6XwtHvt7sZncsHmt7JBLnnzsdjwzdgjU-->

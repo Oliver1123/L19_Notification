@@ -102,7 +102,6 @@ public class NotificationDBQueryHelper {
                         .setVibrate(new long[]{0, 100, 200, 300})
                         .setSound(Uri.parse("android.resource://" + Constants.PACKAGE_NAME + "/" + R.raw.notif_sound));
 
-
                 result.add(new Pair<Integer, NotificationCompat.Builder>(notification_ID, builder));
                 Log.d(Constants.TAG, "get " + notification_ID + " builder: " + builder.toString());
             }

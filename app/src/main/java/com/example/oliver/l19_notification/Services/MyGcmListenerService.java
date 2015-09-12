@@ -1,10 +1,8 @@
 package com.example.oliver.l19_notification.Services;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -21,7 +19,6 @@ import com.google.android.gms.gcm.GcmListenerService;
  * Created by oliver on 11.09.15.
  */
 public class MyGcmListenerService extends GcmListenerService {
-
 
     public static final String ACTION_ADD_NOTIFICATION = "addNotification";
 
@@ -54,8 +51,8 @@ public class MyGcmListenerService extends GcmListenerService {
         Pair<Integer, NotificationCompat.Builder> pair = new Pair<>(NotificationIDGenerator.getNextID(this),
                                                                     builder);
 
-        pair.second.setTicker("Notification id: " + pair.first);
-        pair.second.setSubText("Subtitle id: " + pair.first);
+//        pair.second.setTicker("Notification id: " + pair.first);
+//        pair.second.setSubText("Subtitle id: " + pair.first);
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(pair.first, pair.second.build());
